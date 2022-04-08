@@ -2,8 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 
-Roles.createRole('user');
-Roles.createRole('admin');
+//Roles.createRole('user');
+//Roles.createRole('admin');
 
 /*const SEED_USERNAME = 'admin';
 const SEED_PASSWORD = 'admin';
@@ -36,7 +36,7 @@ var users = [
 
 users.forEach(function (user) {
   var id;
-
+if (!Accounts.findUserByEmail(user.email)) {
   id = Accounts.createUser({
     email: user.email,
     password: "password",
@@ -52,5 +52,5 @@ users.forEach(function (user) {
     // Need _id of existing user record so this call must come after `Accounts.createUser`.
     Roles.addUsersToRoles(id, user.roles);
   }
-
+}
 });

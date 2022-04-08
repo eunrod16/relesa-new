@@ -1,0 +1,26 @@
+<body>
+    {{> mainContainer }}
+</body>
+
+<template name="mainContainer">
+
+    <div class="container">
+      {{#if isUserLogged}}
+        <header>
+            <h1>Todo List</h1>
+        </header>
+
+        <ul>
+            {{#each tasks}}
+                {{> task}}
+            {{/each}}
+        </ul>
+        {{else}}
+            {{> login }}
+        {{/if}}
+    </div>
+</template>
+
+<template name="task">
+    <li>{{text}}</li>
+</template>

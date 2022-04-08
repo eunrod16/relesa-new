@@ -1,0 +1,335 @@
+
+<template name="mainContainer">
+  {{#if isUserLogged}}
+   <div id="wrapper">
+   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="indexbk.html">
+         <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+         </div>
+         <div class="sidebar-brand-text mx-3">Relesa</div>
+      </a>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
+         <a class="nav-link" href="indexbk.html">
+         <i class="fas fa-fw fa-tachometer-alt"></i>
+         <span>Dashboard</span></a>
+      </li>
+      <hr class="sidebar-divider">
+      <div class="sidebar-heading">
+         Acciones
+      </div>
+      <!--<li class="nav-item">
+         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
+         <i class="fas fa-fw fa-folder"></i>
+         <span>Formularios</span>
+         </a>
+         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+               <h6 class="collapse-header">Cáptura</h6>
+
+               <a class="collapse-item" href="register.html">Crear Orden</a>
+
+               <div class="collapse-divider"></div>
+
+            </div>
+         </div>
+      </li>-->
+      <li class="nav-item">
+         <a class="nav-link" href="indexbk.html">
+         <i class="fas fa-fw fa-table"></i>
+         <span>Ordenes</span></a>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
+   </ul>
+
+   <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+            </button>
+            <ul class="navbar-nav ml-auto">
+
+               <li class="nav-item dropdown no-arrow">
+                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">Elton</span>
+                  <img class="img-profile rounded-circle"
+                     src="undraw_profile.svg">
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                     aria-labelledby="userDropdown">
+                     <a class="dropdown-item" href="#">
+                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                     Profile
+                     </a>
+                     <a class="dropdown-item" href="#">
+                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                     Settings
+                     </a>
+                     <a class="dropdown-item" href="#">
+                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                     Activity Log
+                     </a>
+                     <div class="dropdown-divider"></div>
+                     <a class="dropdown-item logout" href="#" data-toggle="modal" data-target="#logoutModal">
+                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                     Logout
+                     </a>
+                  </div>
+               </li>
+            </ul>
+         </nav>
+
+         <div class="container-fluid">
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">Ordenes</h1>
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+               <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Ruta Norte 01 de marzo 2022</h6>
+               </div>
+               <div class="card-body">
+                  <div class="table-responsive">
+                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                           <tr>
+                             <th>Cliente</th>
+                              <th>No. Orden</th>
+                              <th>Estado</th>
+                              <th>Seguimiento</th>
+                              <th>Carga</th>
+                              <th>Cierre</th>
+                              <th>Liquidación</th>
+                              <th>Instalación</th>
+
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                             <td>VICTOR MANUEL GARCIA LOPEZ</td>
+                             <td>18875753</td>
+                             <td>
+                                <p style="color: orange;">PENDIENTE CIERRE</p>
+                             </td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
+
+
+                           </tr>
+                           {{#if isInRole 'admin' }}
+                           <tr>
+                             <td>JOSÉ MIGUEL CARRANA MARROQUIN</td>
+                             <td>74822834</td>
+                             <td>
+                                <p style="color: orange;">PENDIENTE CIERRE</p>
+                             </td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
+
+
+                           </tr>
+
+
+                           <tr>
+                             <td>RINA SOFIA YAX PEREZ</td>
+                             <td>3334455</td>
+                             <td>
+                                <p style="color: orange;">REGISTRADO</p>
+                             </td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
+
+
+                           </tr>
+
+                           {{/if}}
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div class="modal fade" id="InstallacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Instalación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                        <form>
+                           <div class="form-group">
+                             <label>Hora Inicio</label>
+                             <input type="time"   class="form-control" >
+                           </div>
+                           <div class="form-group">
+                             <label>Hora Final</label>
+                             <input type="time"   class="form-control"  >
+                           </div>
+
+                        </form>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal fade" id="CierreModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cierre</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                        <form>
+                           <div class="form-group ">
+                             <label for="exampleInputEmail1">Completo/No Completo</label>
+                             <select class="form-control">
+                                <option>Completo</option>
+                                <option>No Completo</option>
+                             </select>
+                           </div>
+                           <div class="form-group ">
+                             <label>Motivo Cierre</label>
+                             <input type="text"   class="form-control" >
+                           </div>
+
+                        </form>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal fade" id="LiquidacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Liquidación</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                        <form>
+                           <div class="form-group">
+                             <label>No. Boleta</label>
+                             <input type="text"   class="form-control" >
+                           </div>
+                           <div class="form-group">
+                             <label>Fecha</label>
+                             <input type="date"   class="form-control"  >
+                           </div>
+                           <div class="form-group">
+                             <label for="exampleInputEmail1">Back Office</label>
+                             <select class="form-control">
+                                <option>Ester Cruz</option>
+                                <option>Carlos Hernández</option>
+                             </select>
+                           </div>
+
+                        </form>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal fade" id="CargaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Carga Materiales</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                        <form>
+                           <div class="form-group ">
+                              <label>Código Inventario</label>
+                              <input type="text"   class="form-control"  placeholder="432">
+                           </div>
+                           <div class="form-group ">
+                             <label>No. ETA</label>
+                             <input type="text"   class="form-control"  placeholder="43">
+                           </div>
+
+                        </form>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal fade" id="seguimientoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Seguimiento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                        <form>
+                           <div class="form-group row">
+                              <label>No. Orden</label>
+                              <input type="text" disabled  class="form-control"  placeholder="18875753">
+                           </div>
+                           <div class="form-group row">
+                             <label>Seguimiento</label>
+                             <input type="text"   class="form-control">
+                           </div>
+
+                        </form>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+
+      </div>
+      </div>
+
+   </div>
+
+   {{else}}
+       {{> login }}
+   {{/if}}
+</template>
+
+   <body id="page-top">
+     {{> mainContainer }}
+   </body>

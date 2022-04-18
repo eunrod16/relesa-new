@@ -37,7 +37,7 @@
          </div>
       </li>-->
       <li class="nav-item">
-         <a class="nav-link" href="indexbk.html">
+         <a class="nav-link" data-toggle="modal" data-target="#CreacionModal">
          <i class="fas fa-fw fa-table"></i>
          <span>Ordenes</span></a>
       </li>
@@ -109,17 +109,24 @@
                            </tr>
                         </thead>
                         <tbody>
+                          {{#each orders}}
+                          <tr>
+                            {{> order}}
+                          </tr>
+                          {{/each}}
+
+
                            <tr>
                              <td>VICTOR MANUEL GARCIA LOPEZ</td>
                              <td>18875753</td>
                              <td>
                                 <p style="color: orange;">PENDIENTE CIERRE</p>
                              </td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm openseguimiento"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm opencarga"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm opencierre"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm openliquidacion"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
+                              <td><button type="button" class="btn btn-outline-primary btn-sm openinstalacion"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
 
 
                            </tr>
@@ -161,6 +168,107 @@
                   </div>
                </div>
             </div>
+            <div class="modal fade" id="CreacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crear Orden</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                        <form>
+                          <div class="row">
+                             <div class="col-lg-12">
+
+                                   <form class="user">
+                                      <div class="form-group row">
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">Fecha</label>
+                                            <input type="date"  class="form-control" id="fecha_creacion">
+                                         </div>
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">No. Orden</label>
+                                            <input type="text"  class="form-control"  placeholder="" id="no_orden_creacion">
+                                         </div>
+                                         <div class="col-sm">
+                                          <label for="exampleInputEmail1">Tipo OS</label>
+                                          <input type="text"  class="form-control"  placeholder="GP" id="tipo_os">
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <div class="col-sm">
+                                         <label for="exampleInputEmail1">Cliente</label>
+                                         <input type="text"  class="form-control"  placeholder="" id="cliente">
+                                         </div>
+                                         <div class="col-sm">
+                                          <label for="exampleInputEmail1">Dirección</label>
+                                          <input type="text"  class="form-control"  placeholder="" id="direccion">
+                                         </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <div class="col-sm">
+                                           <label for="exampleInputEmail1">Región</label>
+                                           <select class="form-control" id="region">
+                                              <option>Metro</option>
+                                              <option>Central</option>
+                                           </select>
+                                        </div>
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">Tecnología</label>
+                                            <select class="form-control" id="tecnologia">
+                                               <option>GPON</option>
+                                            </select>
+                                         </div>
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">Técnico</label>
+                                            <select class="form-control" id="tecnico">
+                                               <option>Ricardo Gonzáles</option>
+                                            </select>
+                                         </div>
+
+                                      </div>
+                                      <div class="form-group row">
+                                        <div class="col-sm">
+                                           <label for="exampleInputEmail1">Auxiliar</label>
+                                           <select class="form-control" id="auxiliar">
+                                              <option>Daniel Vicente</option>
+                                           </select>
+                                        </div>
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">Cobro</label>
+                                            <input type="number" min="0.00" max="10000.00" step="0.01"  class="form-control" id="cobro"  >
+                                         </div>
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">No. Boleta</label>
+                                            <input type="number"  class="form-control" id="no_boleta_creacion" >
+                                         </div>
+                                      </div>
+                                      <div class="form-group row">
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">Observaciones</label>
+                                            <textarea  class="form-control" id="observaciones">  </textarea>
+                                         </div>
+
+                                      </div>
+                                   </form>
+
+
+                             </div>
+
+
+                             </div>
+
+                        </form>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary crearsave" data-dismiss="modal">Guardar</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
             <div class="modal fade" id="InstallacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -174,18 +282,18 @@
                         <form>
                            <div class="form-group">
                              <label>Hora Inicio</label>
-                             <input type="time"   class="form-control" >
+                             <input type="time"   class="form-control" value="{{current_order.hora_inicio}}" id="hora_inicio">
                            </div>
                            <div class="form-group">
                              <label>Hora Final</label>
-                             <input type="time"   class="form-control"  >
+                             <input type="time"   class="form-control" value="{{current_order.hora_fin}}" id="hora_fin" >
                            </div>
 
                         </form>
                      </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        <button type="button" class="btn btn-primary instalacionsave" data-dismiss="modal">Guardar cambios</button>
                      </div>
                   </div>
                </div>
@@ -199,26 +307,28 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                      </div>
+                     <form action=""  method="" class="cierreform">
                      <div class="modal-body">
-                        <form>
+
                            <div class="form-group ">
                              <label for="exampleInputEmail1">Completo/No Completo</label>
-                             <select class="form-control">
+                             <select class="form-control" id="ifcierre" value="{{current_order.ifcierre}}">
                                 <option>Completo</option>
                                 <option>No Completo</option>
                              </select>
                            </div>
-                           <div class="form-group ">
+                           <div class="form-group " >
                              <label>Motivo Cierre</label>
-                             <input type="text"   class="form-control" >
+                             <input type="text" id="motivocierre"  class="form-control" value="{{current_order.motivo_cierre}}" >
                            </div>
 
-                        </form>
+
                      </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        <button type="button"  class="btn btn-primary cierresave" data-dismiss="modal">Guardar cambios</button>
                      </div>
+                     </form>
                   </div>
                </div>
             </div>
@@ -235,11 +345,11 @@
                         <form>
                            <div class="form-group">
                              <label>No. Boleta</label>
-                             <input type="text"   class="form-control" >
+                             <input type="text"   class="form-control" id="no_boleta" value="{{current_order.no_boleta}}">
                            </div>
                            <div class="form-group">
                              <label>Fecha</label>
-                             <input type="date"   class="form-control"  >
+                             <input type="date"   class="form-control" id="fecha_liquidacion" value="{{current_order.fecha_liquidacion}}">
                            </div>
                            <div class="form-group">
                              <label for="exampleInputEmail1">Back Office</label>
@@ -253,7 +363,7 @@
                      </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        <button type="button" class="btn btn-primary liquidacionsave" data-dismiss="modal">Guardar cambios</button>
                      </div>
                   </div>
                </div>
@@ -271,18 +381,18 @@
                         <form>
                            <div class="form-group ">
                               <label>Código Inventario</label>
-                              <input type="text"   class="form-control"  placeholder="432">
+                              <input type="text"   class="form-control"  placeholder="432" id="codigo_inventario" value="{{current_order.codigo_inventario}}">
                            </div>
                            <div class="form-group ">
                              <label>No. ETA</label>
-                             <input type="text"   class="form-control"  placeholder="43">
+                             <input type="text"   class="form-control"  placeholder="43" id="no_eta" value="{{current_order.no_eta}}">
                            </div>
 
                         </form>
                      </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        <button type="button" class="btn btn-primary cargasave" data-dismiss="modal">Guardar cambios</button>
                      </div>
                   </div>
                </div>
@@ -300,18 +410,18 @@
                         <form>
                            <div class="form-group row">
                               <label>No. Orden</label>
-                              <input type="text" disabled  class="form-control"  placeholder="18875753">
+                              <input type="text" disabled  class="form-control"  placeholder="18875753" id="no_orden" value="{{current_order.no_orden}}">
                            </div>
                            <div class="form-group row">
                              <label>Seguimiento</label>
-                             <input type="text"   class="form-control">
+                             <input type="text"   class="form-control" id="seguimiento" value="{{current_order.seguimiento}}">
                            </div>
 
                         </form>
                      </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        <button type="button" class="btn btn-primary seguimientosave" data-dismiss="modal">Guardar cambios</button>
                      </div>
                   </div>
                </div>
@@ -328,6 +438,17 @@
    {{else}}
        {{> login }}
    {{/if}}
+</template>
+
+<template name="order">
+    <td>{{cliente}}</td>
+    <td>{{no_orden}}</td>
+    <td>{{estado}}</td>
+    <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
+    <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
+    <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
+    <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
+    <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
 </template>
 
    <body id="page-top">

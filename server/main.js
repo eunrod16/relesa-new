@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
-
+import { Orders } from '/imports/api/Orders';
 //Roles.createRole('user');
 //Roles.createRole('admin');
 
@@ -28,6 +28,25 @@ Meteor.startup(() => {
     Roles.addUsersToRoles(SEED_USERNAME1, 'user', null);
   }
 });*/
+//Orders.rawCollection().drop();
+if (Orders.find().count() === 0) {
+   Orders.insert({
+      fecha: "2022-02-02",
+      no_orden: 874847,
+      tipo_os: "GP",
+      cliente: "Rosario Portillo",
+      direccion:"Casa Azul cerca del puente",
+      region: "Metro",
+      tecnologia:"GPON",
+      tecnico:"Ricardo Gonzales",
+      auxiliar:"Daniel Vicente",
+      cobro:"18.90",
+      no_boleta:9483948,
+      observaciones:"PENDIENTE",
+      estado:"Registrado"
+
+    });
+ }
 
 var users = [
       {name:"admin",email:"admin@example.com",roles:['admin']},

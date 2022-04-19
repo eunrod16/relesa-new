@@ -28,7 +28,7 @@ Meteor.startup(() => {
     Roles.addUsersToRoles(SEED_USERNAME1, 'user', null);
   }
 });*/
-Orders.rawCollection().drop();
+//Orders.rawCollection().drop();
 // if (Orders.find().count() === 0) {
 //    Orders.insert({
 //       fecha: "2022-02-02",

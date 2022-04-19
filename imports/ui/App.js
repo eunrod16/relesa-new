@@ -56,7 +56,7 @@ Template.mainContainer.events({
        cobro:$('#cobro').val(),
        no_boleta:$('#no_boleta_creacion').val(),
        observaciones:$('#observaciones').val(),
-       estado:"Registrado"
+       estado:"REGISTRADO"
 
      });
      $('#fecha_creacion').val("");
@@ -78,9 +78,14 @@ Template.mainContainer.events({
     console.log(Template.instance().current_order.get()['hora_inicio'])
   },
   'click .cierresave'() {
+    var ifcierre = $('#motivocierre').val();
+    var estado = "NO CERRADO";
+    if (ifcierre=='Completo') {
+      estado = "CERRADO";
+    }
    Orders.update(current_id_order, {
      $set: {
-       estado: "CERRADO",
+       estado: estado,
        motivo_cierre:$('#motivocierre').val()
      }
    });
@@ -90,7 +95,8 @@ Template.mainContainer.events({
   Orders.update(current_id_order, {
     $set: {
       no_orden:$('#no_orden').val() ,
-      seguimiento:$('#seguimiento').val()
+      seguimiento:$('#seguimiento').val(),
+      estado:"EN SEGUIMIENTO"
     }
   });
   $('#no_orden').val("");
@@ -100,7 +106,8 @@ Template.mainContainer.events({
    Orders.update(current_id_order, {
      $set: {
        no_eta:$('#no_eta').val() ,
-       codigo_inventario:$('#codigo_inventario').val()
+       codigo_inventario:$('#codigo_inventario').val(),
+       estado:"CARGADO"
      }
    });
    $('#no_eta').val("");
@@ -110,7 +117,8 @@ Template.mainContainer.events({
    Orders.update(current_id_order, {
      $set: {
        no_boleta:$('#no_boleta').val() ,
-       fecha_liquidacion:$('#fecha_liquidacion').val()
+       fecha_liquidacion:$('#fecha_liquidacion').val(),
+       estado:"LIQUIDACIÓN"
      }
    });
    $('#no_boleta').val("");
@@ -120,7 +128,8 @@ Template.mainContainer.events({
    Orders.update(current_id_order, {
      $set: {
        hora_inicio:$('#hora_inicio').val() ,
-       hora_fin:$('#hora_fin').val()
+       hora_fin:$('#hora_fin').val(),
+       estado:"INSTALADO"
      }
    });
    $('#hora_inicio').val("");

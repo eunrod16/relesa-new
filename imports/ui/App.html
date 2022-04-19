@@ -109,58 +109,16 @@
                            </tr>
                         </thead>
                         <tbody>
-                          {{#each orders}}
-                          <tr>
-                            {{> order}}
-                          </tr>
-                          {{/each}}
 
 
-                           <tr>
-                             <td>VICTOR MANUEL GARCIA LOPEZ</td>
-                             <td>18875753</td>
-                             <td>
-                                <p style="color: orange;">PENDIENTE CIERRE</p>
-                             </td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm openseguimiento"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm opencarga"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm opencierre"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm openliquidacion"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm openinstalacion"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
-
-
-                           </tr>
                            {{#if isInRole 'admin' }}
+
+                           {{#each orders}}
                            <tr>
-                             <td>JOSÉ MIGUEL CARRANA MARROQUIN</td>
-                             <td>74822834</td>
-                             <td>
-                                <p style="color: orange;">PENDIENTE CIERRE</p>
-                             </td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
-
-
+                             {{> order}}
                            </tr>
+                           {{/each}}
 
-
-                           <tr>
-                             <td>RINA SOFIA YAX PEREZ</td>
-                             <td>3334455</td>
-                             <td>
-                                <p style="color: orange;">REGISTRADO</p>
-                             </td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
-                              <td><button type="button" class="btn btn-outline-primary btn-sm"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
-
-
-                           </tr>
 
                            {{/if}}
                         </tbody>

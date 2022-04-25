@@ -2,6 +2,38 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 import { Orders } from '/imports/api/Orders';
+import { TabularTables } from '/imports/api/init-table.js';
+
+
+TabularTables.Orders = new Tabular.Table({
+  name: "Orders",
+  collection:  Orders,
+  columns: [
+    {data: "no_orden", title: "No Orden"},
+    {data: "cliente", title: "Cliente"},
+    {data: "estado", title: "Estado"},
+    {
+     title: "Seguimiento",  tmpl: Meteor.isClient && Template.seguimiento
+   },
+   {
+    title: "Carga",  tmpl: Meteor.isClient && Template.carga
+   },
+   {
+    title: "Cierre",  tmpl: Meteor.isClient && Template.cierre
+   },
+   {
+    title: "Instalación",  tmpl: Meteor.isClient && Template.instalacion
+   },
+   {
+    title: "Liquididación",  tmpl: Meteor.isClient && Template.liquidacion
+   },
+   {
+    title: "Mantenimiento",  tmpl: Meteor.isClient && Template.mantenimiento
+   },
+	]
+});
+
+
 //Roles.createRole('user');
 //Roles.createRole('admin');
 
@@ -47,6 +79,7 @@ Meteor.startup(() => {
 //
 //     });
 //  }
+
 
 var users = [
       {name:"admin",email:"admin@example.com",roles:['admin']},

@@ -90,11 +90,12 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Ruta Norte 01 de marzo 2022</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Ordenes del día</h6>
                </div>
                <div class="card-body">
                   <div class="table-responsive">
-                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+{{> tabular table=TabularTables.Orders  class="table  table-bordered" width="100%" cellspacing="0"}}
+                  <!--  <table class="table table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                            <tr>
                              <th>Cliente</th>
@@ -105,9 +106,11 @@
                               <th>Cierre</th>
                               <th>Liquidación</th>
                               <th>Instalación</th>
+                              <th>Mantenimiento</th>
 
                            </tr>
                         </thead>
+
                         <tbody>
 
 
@@ -122,10 +125,11 @@
 
                            {{/if}}
                         </tbody>
-                     </table>
+                     </table>-->
                   </div>
                </div>
             </div>
+
             <div class="modal fade" id="CreacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                <div class="modal-dialog modal-lg" role="document">
                   <div class="modal-content">
@@ -176,13 +180,17 @@
                                          <div class="col-sm">
                                             <label for="exampleInputEmail1">Tecnología</label>
                                             <select class="form-control" id="tecnologia">
-                                               <option>GPON</option>
+                                              {{#each tecnologia}}
+                                                {{> tecno}}
+                                              {{/each}}
                                             </select>
                                          </div>
                                          <div class="col-sm">
                                             <label for="exampleInputEmail1">Técnico</label>
                                             <select class="form-control" id="tecnico">
-                                               <option>Ricardo Gonzáles</option>
+                                              {{#each tecnico}}
+                                                {{> tec}}
+                                              {{/each}}
                                             </select>
                                          </div>
 
@@ -191,7 +199,9 @@
                                         <div class="col-sm">
                                            <label for="exampleInputEmail1">Auxiliar</label>
                                            <select class="form-control" id="auxiliar">
-                                              <option>Daniel Vicente</option>
+                                              {{#each auxiliar}}
+                                                {{> aux}}
+                                              {{/each}}
                                            </select>
                                         </div>
                                          <div class="col-sm">
@@ -223,6 +233,113 @@
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary crearsave" data-dismiss="modal">Guardar</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar Orden</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                        <form>
+                          <div class="row">
+                             <div class="col-lg-12">
+
+                                   <form class="user">
+                                      <div class="form-group row">
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">Fecha</label>
+                                            <input type="date"  class="form-control" id="fecha_creacion">
+                                         </div>
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">No. Orden</label>
+                                            <input type="text" disabled class="form-control"  placeholder="" id="no_orden_creacion" value="{{current_order.no_orden}}">
+                                         </div>
+                                         <div class="col-sm">
+                                          <label for="exampleInputEmail1">Tipo OS</label>
+                                          <input type="text"  class="form-control"  placeholder="GP" id="tipo_os_edit" value="{{current_order.tipo_os}}">
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <div class="col-sm">
+                                         <label for="exampleInputEmail1">Cliente</label>
+                                         <input type="text"  class="form-control"  placeholder="" id="cliente_edit" value="{{current_order.cliente}}">
+                                         </div>
+                                         <div class="col-sm">
+                                          <label for="exampleInputEmail1">Dirección</label>
+                                          <input type="text"  class="form-control"  placeholder="" id="direccion_edit" value="{{current_order.direccion}}">
+                                         </div>
+                                      </div>
+                                      <div class="form-group row">
+                                        <div class="col-sm">
+                                           <label for="exampleInputEmail1">Región</label>
+                                           <select class="form-control" id="region_edit" value="{{current_order.region}}">
+                                              <option>Metro</option>
+                                              <option>Central</option>
+                                           </select>
+                                        </div>
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">Tecnología</label>
+                                            <select class="form-control" id="tecnologia_edit" value="{{current_order.tecnologia}}">
+                                              {{#each tecnologia}}
+                                                {{> tecno}}
+                                              {{/each}}
+                                            </select>
+                                         </div>
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">Técnico</label>
+                                            <select class="form-control" id="tecnico_edit" value="{{current_order.tecnico}}">
+                                              {{#each tecnico}}
+                                                {{> tec}}
+                                              {{/each}}
+                                            </select>
+                                         </div>
+
+                                      </div>
+                                      <div class="form-group row">
+                                        <div class="col-sm">
+                                           <label for="exampleInputEmail1">Auxiliar</label>
+                                           <select class="form-control" id="auxiliar_edit">
+                                             {{#each auxiliar}}
+                                               {{> aux}}
+                                             {{/each}}
+                                           </select>
+                                        </div>
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">Cobro</label>
+                                            <input type="number" min="0.00" max="10000.00" step="0.01"  class="form-control" id="cobro_edit" value="{{current_order.cobro}}" >
+                                         </div>
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">No. Boleta</label>
+                                            <input type="number"  class="form-control" id="no_boleta_creacion_edit" value="{{current_order.no_boleta}}" >
+                                         </div>
+                                      </div>
+                                      <div class="form-group row">
+                                         <div class="col-sm">
+                                            <label for="exampleInputEmail1">Observaciones</label>
+                                            <textarea  class="form-control" id="observaciones_edit"> {{current_order.observaciones}} </textarea>
+                                         </div>
+
+                                      </div>
+                                   </form>
+
+
+                             </div>
+
+
+                             </div>
+
+                        </form>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary editarsave" data-dismiss="modal">Guardar</button>
                      </div>
                   </div>
                </div>
@@ -368,7 +485,7 @@
                         <form>
                            <div class="form-group row">
                               <label>No. Orden</label>
-                              <input type="text" disabled  class="form-control"  placeholder="18875753" id="no_orden" value="{{current_order.no_orden}}">
+                              <input type="text" disabled  class="form-control"   id="no_orden" value="{{current_order.no_orden}}">
                            </div>
                            <div class="form-group row">
                              <label>Seguimiento</label>
@@ -380,6 +497,25 @@
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary seguimientosave" data-dismiss="modal">Guardar cambios</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Orden</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                        <p>Está a punto de eliminar una orden</p>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary delete" data-dismiss="modal">Aceptar</button>
                      </div>
                   </div>
                </div>
@@ -407,7 +543,46 @@
     <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
     <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
     <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
+    <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#DeleteModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    <button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#EditModal"><i class="fas fa-edit"></i></button></td>
+
 </template>
+<template name="aux">
+<option value="{{text}}">
+  {{text}}
+</option>
+</template>
+<template name="tec">
+<option value="{{text}}">
+  {{text}}
+</option>
+</template>
+<template name="tecno">
+<option value="{{text}}">
+  {{text}}
+</option>
+</template>
+
+<template name="seguimiento">
+  <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
+</template>
+<template name="carga">
+<td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
+</template>
+<template name="cierre">
+  <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
+</template>
+<template name="liquidacion">
+  <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
+</template>
+<template name="instalacion">
+  <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
+</template>
+<template name="mantenimiento">
+  <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#DeleteModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
+  <button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#EditModal"><i class="fas fa-edit"></i></button></td>
+</template>
+
 
    <body id="page-top">
      {{> mainContainer }}

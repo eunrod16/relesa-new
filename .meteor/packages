@@ -28,3 +28,6 @@ accounts-ui
 accounts-password
 ostrio:flow-router-extra
 alanning:roles
+ephemer:reactive-datatables
+aldeed:tabular
+session

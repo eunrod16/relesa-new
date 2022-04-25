@@ -176,6 +176,10 @@ Template.mainContainer.events({
     current_id_order= this._id;
     Template.instance().current_order.set(Orders.findOne({ _id: current_id_order }));
     var current = Template.instance().current_order.get()
+
+    $('#auxiliar_edit option:selected').removeAttr('selected');
+    $('#tecnologia_edit option:selected').removeAttr('selected');
+    $('#tecnico_edit option:selected').removeAttr('selected');
     $('#auxiliar_edit option[value="'+current.auxiliar+'"]').attr('selected','selected');
     $('#tecnologia_edit option[value="'+current.tecnologia+'"]').attr('selected','selected');
     $('#tecnico_edit option[value="'+current.tecnico+'"]').attr('selected','selected');

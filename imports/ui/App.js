@@ -76,6 +76,7 @@ Template.mainContainer.helpers({
       { text: 'DTH' },
       { text: 'GPON' },
       { text: 'HFC' },
+      { text: 'WTTH' },
     ],
   tecnico: [
         { text: 'ANGEL MEJIA' },
@@ -95,6 +96,7 @@ Template.mainContainer.helpers({
         { text: 'LUIS QUIÑONEZ' },
         { text: 'TOBI REYES' },
         { text: 'FRANCISCO BELGARA' },
+        { text: 'N/A' },
     ],
   isUserLogged() {
     return isUserLogged();

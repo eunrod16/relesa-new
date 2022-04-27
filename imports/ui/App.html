@@ -94,7 +94,7 @@
                </div>
                <div class="card-body">
                   <div class="table-responsive">
-{{> tabular table=TabularTables.Orders  class="table  table-bordered" width="100%" cellspacing="0"}}
+{{> tabular table=TabularTables.Orders  class="table  table-bordered table-hover" width="100%" cellspacing="0"}}
                   <!--  <table class="table table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                            <tr>
@@ -209,8 +209,14 @@
                                             <input type="number" min="0.00" max="10000.00" step="0.01"  class="form-control" id="cobro"  >
                                          </div>
                                          <div class="col-sm">
-                                            <label for="exampleInputEmail1">No. Boleta</label>
-                                            <input type="number"  class="form-control" id="no_boleta_creacion" >
+                                           <div class="col-sm">
+                                              <label for="exampleInputEmail1">No. Boleta</label>
+                                              <input type="number"  class="form-control" id="no_boleta_creacion" >
+                                           </div>
+                                           <div class="col-sm">
+                                              <label for="exampleInputEmail1">N/A</label>
+                                              <input type="checkbox"  class="checkbox_no_boleta" id="no_boleta_na" >
+                                           </div>
                                          </div>
                                       </div>
                                       <div class="form-group row">
@@ -316,8 +322,14 @@
                                             <input type="number" min="0.00" max="10000.00" step="0.01"  class="form-control" id="cobro_edit" value="{{current_order.cobro}}" >
                                          </div>
                                          <div class="col-sm">
-                                            <label for="exampleInputEmail1">No. Boleta</label>
-                                            <input type="number"  class="form-control" id="no_boleta_creacion_edit" value="{{current_order.no_boleta}}" >
+                                           <div class="col-sm">
+                                              <label for="exampleInputEmail1">No. Boleta</label>
+                                              <input type="number"  class="form-control" id="no_boleta_creacion_edit" >
+                                           </div>
+                                           <div class="col-sm">
+                                              <label for="exampleInputEmail1">N/A</label>
+                                              <input type="checkbox"  class="checkbox_no_boleta_edit" id="no_boleta_na_edit" >
+                                           </div>
                                          </div>
                                       </div>
                                       <div class="form-group row">
@@ -564,23 +576,23 @@
 </template>
 
 <template name="seguimiento">
-  <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button></td>
+  <button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#seguimientoModal">Seguimiento</button>
 </template>
 <template name="carga">
-<td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#CargaModal">Carga</button></td>
+<button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#CargaModal">Carga</button>
 </template>
 <template name="cierre">
-  <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#CierreModal">Cierre</button></td>
+  <button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#CierreModal">Cierre</button>
 </template>
 <template name="liquidacion">
-  <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button></td>
+  <button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#LiquidacionModal">Liquidición</button>
 </template>
 <template name="instalacion">
-  <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button></td>
+  <button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#InstallacionModal">Instalación</button>
 </template>
 <template name="mantenimiento">
-  <td><button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#DeleteModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
-  <button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#EditModal"><i class="fas fa-edit"></i></button></td>
+  <button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#DeleteModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
+  <button type="button" class="btn btn-outline-primary btn-sm open"  data-toggle="modal" data-target="#EditModal"><i class="fas fa-edit"></i></button>
 </template>
 
 

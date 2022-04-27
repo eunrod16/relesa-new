@@ -113,10 +113,34 @@ Template.mainContainer.helpers({
 
 
 Template.mainContainer.events({
+  'click .checkbox_no_boleta'(){
+
+    if ($("#no_boleta_na").prop('checked') == true){
+      $('#no_boleta_creacion').prop( "disabled", true );
+      $('#no_boleta_creacion').val("");
+    }
+    else {
+      $('#no_boleta_creacion').prop( "disabled", false );
+    }
+  },
+  'click .checkbox_no_boleta_edit'(){
+
+    if ($("#no_boleta_na_edit").prop('checked') == true){
+      $('#no_boleta_creacion_edit').prop( "disabled", true );
+      $('#no_boleta_creacion_edit').val("");
+    }
+    else {
+      $('#no_boleta_creacion_edit').prop( "disabled", false );
+    }
+  },
   'click .logout'() {
     Meteor.logout();
   },
   'click .crearsave'() {
+    var no_boleta = "N/A";
+    if ($("#no_boleta_na").prop('checked') == false){
+      no_boleta = $('#no_boleta_creacion').val();
+    }
     Orders.insert({
        fecha: $('#fecha_creacion').val(),
        no_orden: $('#no_orden_creacion').val(),
@@ -128,7 +152,7 @@ Template.mainContainer.events({
        tecnico:$('#tecnico').val(),
        auxiliar:$('#auxiliar').val(),
        cobro:$('#cobro').val(),
-       no_boleta:$('#no_boleta_creacion').val(),
+       no_boleta:no_boleta,
        observaciones:$('#observaciones').val(),
        estado:"REGISTRADO"
 
@@ -147,6 +171,10 @@ Template.mainContainer.events({
      $('#observaciones').val("");
  },
  'click .editarsave'() {
+   var no_boleta = "N/A";
+   if ($("#no_boleta_na_edit").prop('checked') == false){
+     no_boleta = $('#no_boleta_creacion_edit').val();
+   }
    Orders.update(current_id_order, {
      $set: {
        tipo_os: $('#tipo_os_edit').val(),
@@ -157,7 +185,7 @@ Template.mainContainer.events({
        tecnico:$('#tecnico_edit').val(),
        auxiliar:$('#auxiliar_edit').val(),
        cobro:$('#cobro_edit').val(),
-       no_boleta:$('#no_boleta_creacion_edit').val(),
+       no_boleta:no_boleta,
        observaciones:$('#observaciones_edit').val(),
      }
    });
@@ -166,25 +194,39 @@ Template.mainContainer.events({
     $('#tipo_os_edit').val("");
     $('#cliente_edit').val("");
     $('#direccion_edit').val("");
-    $('#region_edit').val("");
-    $('#tecnologia_edit').val("");
-    $('#tecnico_edit').val("");
-    $('#auxiliar_edit').val("");
-    $('#cobro_edit').val("");
-    $('#no_boleta_creacion_edit').val("");
+    // $('#region_edit').val("");
+    // $('#tecnologia_edit').val("");
+    // $('#tecnico_edit').val("");
+    // $('#auxiliar_edit').val("");
+    //$('#cobro_edit').val("");
+    //$('#no_boleta_creacion_edit').val("");
     $('#observaciones_edit').val("");
+    $('#no_boleta_na_edit').prop( "checked", false );
 },
   'click .open'() {
     current_id_order= this._id;
     Template.instance().current_order.set(Orders.findOne({ _id: current_id_order }));
     var current = Template.instance().current_order.get()
-
+    console.log(current.tecnologia)
+    console.log(current.cobro)
+    if (current.no_boleta == 'N/A') {
+      $('#no_boleta_creacion_edit').val("");
+      $('#no_boleta_na_edit').prop( "checked", true );
+      $('#no_boleta_creacion_edit').prop( "disabled", true );
+    }
+    else {
+      $('#no_boleta_creacion_edit').val(current.no_boleta);
+      $('#no_boleta_na_edit').prop( "checked", false );
+      $('#no_boleta_creacion_edit').prop( "disabled", false );
+    }
     $('#auxiliar_edit option:selected').removeAttr('selected');
     $('#tecnologia_edit option:selected').removeAttr('selected');
     $('#tecnico_edit option:selected').removeAttr('selected');
+    $('#region_edit option:selected').removeAttr('selected');
     $('#auxiliar_edit option[value="'+current.auxiliar+'"]').attr('selected','selected');
     $('#tecnologia_edit option[value="'+current.tecnologia+'"]').attr('selected','selected');
     $('#tecnico_edit option[value="'+current.tecnico+'"]').attr('selected','selected');
+    $('#region_edit option[value="'+current.region+'"]').attr('selected','selected');
   },
   'click .delete'() {
     Orders.remove(current_id_order);

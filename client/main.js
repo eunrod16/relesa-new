@@ -6,7 +6,7 @@ import '../imports/ui/App.js';
 import '../imports/ui/sb-admin-2.min.css';
 import './bootstrap.bundle.js';
 import './sb-admin-2.min.js';
-//import './jquery.min.js';
+import './jquery.min.js';
 import './main.html';
 
 
